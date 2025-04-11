@@ -3,6 +3,7 @@ import sys
 import pandas as pd
 import numpy as np
 from faker import Faker
+from matplotlib import pyplot as plt
 from scipy import stats
 from datetime import datetime
 import os
@@ -94,7 +95,7 @@ def generate_university_students_data(row_count):
     total_credits = np.random.randint(140, 181, size=row_count)
 
     # Current semester and Number of credits approved relationship
-    data['current_semester'] = np.random.randint(1, 9, row_count)  # Assuming 8 semesters max for undergrad
+    data['current_semester'] = np.random.normal(loc=5, scale=2, size=row_count).clip(1, 10).astype(int)
     data['Number_of_credits_approved'] = [
         int(np.clip(stats.cauchy.rvs(loc=sem * 18, scale=5), 0, min(sem * 18 + 18, total_credits[i])))
         for i, sem in enumerate(data['current_semester'])

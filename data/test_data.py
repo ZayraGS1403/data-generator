@@ -1,14 +1,9 @@
 import csv
-
-import pandas as pd
-import numpy as np
 from datetime import datetime
-from data.data import generate_university_students_data, main  # Import the functions from data.py
-from unittest.mock import patch, MagicMock
+from data.data import generate_university_students_data, main
+from unittest.mock import patch
 import os
-import sys
 
-# Use dynamic current year for age calculations
 current_year = datetime.now().year
 
 class TestUniversityStudentsData:

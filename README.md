@@ -53,7 +53,22 @@ TOTAL            237     14    94%
 
 ## Generated Data
 
-img
+
+# Pie chart
+![image](https://github.com/user-attachments/assets/71e8d1bb-119b-4ebb-8aff-8b9f7f316fff)
+
+![image](https://github.com/user-attachments/assets/caf30f0b-6ba8-4b53-9715-cdcef1740b8a)
+
+![image](https://github.com/user-attachments/assets/f207d19f-8599-4f7e-9331-0632ad8d7d65)
+
+![image](https://github.com/user-attachments/assets/ce51c7c0-a80d-4c4c-9d7b-b595977c8407)
+
+
+# Histograms
+
+![image](https://github.com/user-attachments/assets/cac850a7-d4d9-4bd4-8bef-5f4ff7ac7585)
+
+
 
 
 

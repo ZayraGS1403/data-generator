@@ -18,20 +18,18 @@ def plot_pie_charts_and_distributions(csv_path):
         print(f"Error reading CSV file: {e}")
         sys.exit(1)
 
-    # Columns to plot as pie charts (categorical)
     categorical_columns = [
         'gender', 'nationality', 'state_program', 'student_status',
         'academic_standing', 'payment_status', 'marital_status', 'scholarship'
     ]
 
     numerical_columns = [
-        'GPA', 'Number_of_credits_approved', 'library_books_borrowed'
+        'GPA', 'library_books_borrowed'
     ]
 
     fig, axes = plt.subplots(3, 4, figsize=(24, 18))
     axes = axes.flatten()
 
-    # Plot pie charts for categorical columns
     for idx, column in enumerate(categorical_columns):
         value_counts = df[column].value_counts()
         labels = value_counts.index
@@ -50,7 +48,6 @@ def plot_pie_charts_and_distributions(csv_path):
         axes[idx].set_title(f'Distribution of {column}')
         axes[idx].axis('equal')
 
-    # Plot histograms with KDE for numerical columns
     for idx, column in enumerate(numerical_columns, start=len(categorical_columns)):
         sns.histplot(
             df[column],
@@ -60,10 +57,9 @@ def plot_pie_charts_and_distributions(csv_path):
             color='skyblue',
             ax=axes[idx]
         )
-        # For GPA, overlay the theoretical normal distribution
         if column == 'GPA':
-            mean_gpa = 3.5  # Mean used in data generation
-            std_gpa = 0.5   # Standard deviation used in data generation
+            mean_gpa = 3.5
+            std_gpa = 0.5
             x = np.linspace(2.0, 5.0, 100)
             p = norm.pdf(x, loc=mean_gpa, scale=std_gpa)
             axes[idx].plot(x, p, 'r-', lw=2, label=f'Theoretical Normal\n(μ={mean_gpa}, σ={std_gpa})')
@@ -73,19 +69,16 @@ def plot_pie_charts_and_distributions(csv_path):
         axes[idx].set_ylabel('Density')
         axes[idx].grid(True, alpha=0.3)
 
-    # Hide the last subplot (axes[11]) since we only need 11 subplots (8 pie charts + 3 histograms)
-    axes[11].axis('off')
+    for ax in axes[10:]:
+        ax.axis('off')
 
-    # Adjust layout to prevent overlap
     plt.tight_layout()
-    # Save the figure to a file
     output_path = 'output/pie_charts_and_distributions.png'
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Charts saved to '{output_path}'")
 
 def main():
-    # Check for correct number of arguments
     if len(sys.argv) != 2:
         print("Usage: python plot.py <csv_path>")
         sys.exit(1)
